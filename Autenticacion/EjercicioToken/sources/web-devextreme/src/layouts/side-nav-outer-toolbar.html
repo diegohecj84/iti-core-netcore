@@ -1,0 +1,33 @@
+<div class='side-nav-outer-toolbar'>
+    <header-toolbar
+      class='layout-header'
+      :menu-toggle-enabled='true'
+      :toggle-menu-func='toggleMenu'
+      :title='title'
+    />
+    <dx-drawer
+      class='layout-body'
+      position='before'
+      template='menu'
+      :opened.sync='menuOpened'
+      :opened-state-mode='drawerOptions.menuMode'
+      :reveal-mode='drawerOptions.menuRevealMode'
+      :min-size='drawerOptions.minMenuSize'
+      :shading='drawerOptions.shaderEnabled'
+      :close-on-outside-click='drawerOptions.closeOnOutsideClick'
+    >
+      <dx-scroll-view class='with-footer'>
+        <slot />
+        <slot name='footer' />
+      </dx-scroll-view>
+      <side-nav-menu
+        slot='menu'
+        slot-scope='_'
+        class='dx-swatch-additional'
+        :compact-mode='!menuOpened'
+        :selected-item='$route.path'
+        :items='menuItems'
+        @click='handleSideBarClick'
+      />
+    </dx-drawer>
+  </div>

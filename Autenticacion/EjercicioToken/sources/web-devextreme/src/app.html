@@ -1,0 +1,12 @@
+<div id='root'>
+  <div :class='cssClasses'>
+    <router-view name='layout' :title='title' :is-x-small='screen.isXSmall' :is-large='screen.isLarge'>
+      <div class='content'>
+        <router-view name='content' />
+      </div>
+      <template #footer>
+        <the-footer />
+      </template>
+    </router-view>
+  </div>
+</div>

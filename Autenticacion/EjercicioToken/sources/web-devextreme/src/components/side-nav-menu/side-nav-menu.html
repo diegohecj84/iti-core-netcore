@@ -1,0 +1,19 @@
+    <div class="side-navigation-menu" @click="forwardClick">
+      <slot />
+      <div class="menu-container" >
+        <dx-tree-view
+          expand-event="click"
+          width="100%"
+          selection-mode="single"
+          key-expr="path"
+          :select-nodes-recursive="true"
+          :select-by-click="true"
+          :items="items"
+          :ref="treeViewRef"
+          @initialized="handleMenuInitialized"
+          @item-click="handleItemClick"
+          @selection-changed="handleSelectionChange"
+          @content-ready="handleSelectionChange"
+        />
+      </div>
+    </div>

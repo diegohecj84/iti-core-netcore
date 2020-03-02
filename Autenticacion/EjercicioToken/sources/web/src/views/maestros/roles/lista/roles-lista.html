@@ -1,0 +1,22 @@
+<div>
+    <v-layout align-space-around column>
+        <v-card>
+            <ItiDataTable :title="$t('menu.roles')"
+                :searchText="$t('maestros.buscar')" :noResultsText="$t('maestros.no-results')"
+                :headers="headers"
+                :buttons="buttons"
+                :items="roles"
+                :loading="loading"
+                :rowsPerPageItems="rowsPerPageItems"
+                @EventAddClick="newItem()"
+                @EventEditClick="editItem($event)"
+                @EventRemoveClick="deleteItem($event)">
+            </ItiDataTable>
+        </v-card>
+    </v-layout>
+
+    <ItiModalDialog ref="modalDialog">
+        <RolesFormulario ref="formulario" :rol="rolSeleccionado" @onClose="closeFormulario"></RolesFormulario>
+    </ItiModalDialog>
+
+</div>

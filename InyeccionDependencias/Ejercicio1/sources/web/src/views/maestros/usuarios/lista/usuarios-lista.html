@@ -1,0 +1,76 @@
+<div>
+    <v-layout align-space-around column>
+        <v-card >
+            <div>
+                <v-toolbar>
+                    <v-toolbar-title>{{ $t('menu.usuarios') }}</v-toolbar-title>
+                    <v-spacer></v-spacer>
+            
+                    <v-text-field class="pr-5" v-model="search" append-icon="search" :label="$t('maestros.buscar')" single-line></v-text-field>
+            
+                    <v-fab-transition>
+                        <v-btn v-show="!addHidden" color="primary" fab dark absolute bottom right @click="newItem()">
+                            <v-icon>add</v-icon>
+                        </v-btn>
+                    </v-fab-transition>
+                </v-toolbar>
+            
+                <v-data-table :headers="headers" :items="usuarios" :loading="loading" :search="search" :rows-per-page-items="rowsPerPageItems">
+                    <template slot="items" slot-scope="props">
+                        <td v-for="(column, i) in headers" v-if="column.text != null && column.text.length > 0" :key="'c' + i">
+                            <span v-if="column.value == 'rol'">
+                                <span>{{ $t(props.item[column.value]) }}</span>
+                            </span>
+                            <span v-else-if="column.value == 'activoIconName'">
+                                <v-icon medium>{{ props.item[column.value] }}</v-icon>
+                            </span>
+                            <span v-else>{{ props.item[column.value] }}</span>
+                        </td>
+            
+                        <td class="text-xs-right align-center">
+                            <v-tooltip bottom lazy>
+                                <v-btn flat icon slot="activator" class="mx-0">
+                                    <v-icon small @click="editItem(props.item)">
+                                        edit
+                                    </v-icon>
+                                </v-btn>
+                                <span>{{ $t('maestros.editar') }}</span>
+                            </v-tooltip>
+                            <v-tooltip bottom lazy>
+                                <v-btn flat icon slot="activator" class="mx-0">
+                                    <v-icon small @click="cambiarClave(props.item)">
+                                        lock
+                                    </v-icon>
+                                </v-btn>
+                                <span>{{ $t('maestro-usuarios.cambiar-clave') }}</span>
+                            </v-tooltip>
+                            <v-tooltip bottom lazy>
+                                <v-btn flat icon slot="activator" class="mx-0">
+                                    <v-icon small @click="deleteItem(props.item)">
+                                        delete
+                                    </v-icon>
+                                </v-btn>
+                                <span>{{ $t('maestros.eliminar') }}</span>
+                            </v-tooltip>
+                        </td>
+                    </template>
+            
+                    <v-alert slot="no-results" :value="true" color="error" icon="warning">
+                        {{ $t('maestros.no-results') }} "{{ search }}".
+                    </v-alert>
+                </v-data-table>
+            </div>
+        </v-card>
+    </v-layout>
+
+    <!-- Cuadro de diálogo para editar usuarios -->
+    <ItiModalDialog ref="modalUsuario">
+        <UsuariosFormulario ref="usuarioFormulario" :usuario="usuarioSeleccionado" @onClose="closeUsuarioFormulario"></UsuariosFormulario>
+    </ItiModalDialog>
+
+    <!-- Cuadro de diálogo para cambiar la clave -->
+    <ItiModalDialog ref="modalCambiarClave" maxWidth="{ default: '400px' }">
+        <CambiarClaveFormulario ref="cambiarClaveFormulario" :usuario="usuarioSeleccionado" @onClose="closeCambiarClaveFormulario"></CambiarClaveFormulario>
+    </ItiModalDialog>
+
+</div>

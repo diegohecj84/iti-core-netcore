@@ -1,0 +1,25 @@
+<div>
+    <template>
+        <v-app id="inspire">
+
+            <Header :title="appTitle"></Header>
+
+            <ItiMenuRoot :fullMenuOptions="fullMenuOptions" width="280"></ItiMenuRoot>
+
+            <v-content>
+                <v-container fluid>
+                    <!-- <transition name="fade" mode="out-in"> -->
+                    <!-- <transition name="slide-fade" mode="out-in"> -->
+                    <transition name="bounce" mode="out-in">
+                        <router-view></router-view>
+                    </transition>
+                </v-container>
+            </v-content>
+
+            <v-footer color="primary" app>
+                <v-spacer></v-spacer>
+                <span class="white--text mr-2"> Instituto Tecnológico de Informática - 2018 &copy;</span>
+            </v-footer>
+        </v-app>
+    </template>
+</div>

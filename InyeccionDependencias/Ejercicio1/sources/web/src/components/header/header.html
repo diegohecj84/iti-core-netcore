@@ -1,0 +1,26 @@
+<v-toolbar color="primary" dark fixed clipped-left app>
+    <v-toolbar-side-icon @click.stop="toggleMenu()"></v-toolbar-side-icon>
+    <img role="presentation" data-scalestrategy="fit" style="display:block;margin:0" :src="imgSrcLogo":srcset="imgSrcLogo"
+        height="55" width="200" data-width="200" data-height="19">
+    <v-spacer></v-spacer>
+
+    <ItiLanguageSelector class="pr-3"></ItiLanguageSelector>
+
+    <v-menu bottom offset-y right>
+
+        <v-chip slot="activator" color="white">
+            <v-subheader light> {{ userName }} </v-subheader>
+            <v-avatar>
+                <img :src="imgSrcPerson" alt="avatar">
+            </v-avatar>
+        </v-chip>
+
+        <v-list>
+            <v-list-tile v-for="(item, index) in items" :key="index" @click="">
+                <v-list-tile-title @click="opcion(item)"> {{ item }} </v-list-tile-title>
+            </v-list-tile>
+        </v-list>
+
+    </v-menu>
+
+</v-toolbar>

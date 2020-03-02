@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EjercicioToken.DataBaseInitialization": {
+      "commandName": "Project",
+      "commandLineArgs": "-cs=\"Server=(localdb)\\MSSQLLocalDB;Database=ITICoreTemplate;Trusted_Connection=True;MultipleActiveResultSets=true\" -m=\"Test\""
+    }
+  }
+}

@@ -1,0 +1,44 @@
+html,
+body {
+  margin: 0px;
+  min-height: 100%;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  @import './themes/generated/variables.base.scss';
+  background-color: darken($base-bg, 5);
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+// Menu
+.dx-swatch-additional {
+  background-color: #363640 !important;
+}
+
+.dx-swatch-additional .dx-treeview-toggle-item-visibility {
+  color: rgba(255, 255, 255, 0.54) !important;
+}
+
+.dx-swatch-additional .dx-widget {
+  color: #fff !important;
+}
+
+.dx-swatch-additional .dx-treeview-item.dx-state-hover {
+  color: #fff !important;
+}
+
+.dx-swatch-additional .dx-treeview-item-without-checkbox.dx-state-focused > .dx-treeview-item {
+  color: #fff !important;
+}
+// Fin Menu

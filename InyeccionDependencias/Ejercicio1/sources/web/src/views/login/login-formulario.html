@@ -1,0 +1,33 @@
+<div id="app">
+    <v-app id="inspire"  :style="styleBackground">
+        <v-content>
+            <v-container fluid fill-height>
+                <v-layout align-center justify-center>
+                    <v-flex xs12 sm8 md4>
+                        <transition name="bounce" mode="out-in">
+                            <v-card id="card-login" class="elevation-12" v-if="!hide">
+                                <v-toolbar dark color="primary">
+                                    <v-toolbar-title>{{appTitle}}</v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                </v-toolbar>
+                                <v-card-text @keyup.enter="submit()">
+                                    <v-form>
+                                        <v-text-field prepend-icon="person" name="usuario" label="Usuario" type="text"
+                                            v-model="login.UserName" v-validate="'required'" :error-messages="errors.collect('usuario')"></v-text-field>
+                                        <v-text-field prepend-icon="lock" name="clave" label="Clave" id="clave" type="password"
+                                            v-model="login.Pwd" v-validate="'required'" :error-messages="errors.collect('clave')"></v-text-field>
+                                    </v-form>
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="primary" @click="submit()">Entrar</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </transition>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-content>
+
+    </v-app>
+</div>

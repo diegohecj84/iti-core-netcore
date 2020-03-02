@@ -1,0 +1,46 @@
+<v-card>
+    <v-card-title class="headline pb-0 ml-3">{{$t('maestro-usuarios.usuario')}}</v-card-title>
+
+    <v-card-text class="pt-0">
+        <v-container grid-list-md class="pt-0">
+            <v-layout wrap>
+                <v-flex xs12 sm3>                        
+                    <v-text-field :label="$t('maestro-usuarios.usuario')" v-model="usuario.UserName" name="usuario"
+                        v-validate="'required'" autofocus :error-messages="errors.collect('usuario')" autocomplete="off" :disabled="usuario.Id > 0"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm9>
+                    <v-text-field :label="$t('nombre')" v-model="usuario.Name" name="nombre"
+                        v-validate="'required'" :error-messages="errors.collect('nombre')"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm3>
+                    <v-text-field :label="$t('telefono')" v-model="usuario.PhoneNumber" name="telefono"
+                        v-validate="'required'" autofocus :error-messages="errors.collect('telefono')"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm9>
+                    <v-text-field :label="$t('maestro-usuarios.email')" v-model="usuario.Email" name="email" v-validate="'required|email'"
+                        :error-messages="errors.collect('email')"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 v-if="!usuario.Id">
+                    <v-text-field :label="$t('maestro-usuarios.clave')" type="password" v-model="usuario.Password" name="password"
+                        data-vv-as="Clave" v-validate="'required'" ref="password" :error-messages="errors.collect('password')" autocomplete="off"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 v-if="!usuario.Id">
+                    <v-text-field :label="$t('maestro-usuarios.repetir-clave')" type="password" v-model="confirmation"
+                        name="password_confirmation" :data-vv-as="$t('maestro-usuarios.repetir-clave')" v-validate="'required|confirmed:password'"
+                        :error-messages="errors.collect('password_confirmation')" autocomplete="off"></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6>
+                    <v-checkbox :label="$t('maestros.activo')" v-model="usuario.IsActive" ></v-checkbox>
+                </v-flex>
+                <v-flex xs12 sm6>
+                    <v-checkbox :label="$t('maestros.admin')" v-model="usuario.IsAdmin" ></v-checkbox>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-card-text>
+
+    <ItiToolbarOkCancel @ok="submit()" @cancel="closeModal()"></ItiToolbarOkCancel>
+
+</v-card>

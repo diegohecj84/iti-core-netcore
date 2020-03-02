@@ -1,0 +1,37 @@
+<v-card>
+    <v-card-title class="headline">Cambiar clave</v-card-title>
+
+    <v-card-text>
+        <v-container grid-list-md>
+            <v-layout wrap>
+                <v-flex xs12 sm12>
+                    <v-text-field label="Clave actual *" type="password" v-model="cambiarContrasenya.PwdActual" name="pwdActual" autofocus 
+                        data-vv-as="Clave" 
+                        v-validate="'required'" :error-messages="errors.collect('pwdActual')"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6>
+                    <v-text-field label="Clave *" type="password" v-model="cambiarContrasenya.PwdNuevo" name="pwdNuevo" autofocus
+                        data-vv-as="Clave"
+                        v-validate="'required'" ref="password" :error-messages="errors.collect('password')"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6>
+                    <v-text-field label="Repetir Clave" type="password" v-model="confirmation" name="password_confirmation"
+                        data-vv-as="Repetir Clave" v-validate="'required|confirmed:password'" :error-messages="errors.collect('password_confirmation')"></v-text-field>
+                </v-flex>
+
+            </v-layout>
+        </v-container>
+    </v-card-text>
+
+    <v-card-actions>
+        <v-spacer></v-spacer>
+
+        <v-btn flat="flat" @click="closeModal()">
+            Cancelar
+        </v-btn>
+
+        <v-btn color="primary" flat="flat" @click="submit()">
+            Aceptar
+        </v-btn>
+    </v-card-actions>
+</v-card>

@@ -1,0 +1,21 @@
+<v-card>
+    <v-card-title class="headline">{{$t('maestro-roles.rol')}}</v-card-title>
+
+    <v-card-text>
+        <v-container grid-list-md>
+            <v-layout wrap>
+                <v-flex xs12>
+                    <v-text-field :label="$t('nombre')" v-model="rol.Name" name="nombre" v-validate="'required'" autofocus
+                        :error-messages="errors.collect('nombre')"></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                        <v-text-field :label="$t('descripcion')" v-model="rol.Description" name="descripcion" v-validate="'required'"
+                            :error-messages="errors.collect('descripcion')"></v-text-field>
+                    </v-flex>
+            </v-layout>
+        </v-container>
+    </v-card-text>
+
+    <ItiToolbarOkCancel @ok="submit()" @cancel="closeModal()"></ItiToolbarOkCancel>
+
+</v-card>
